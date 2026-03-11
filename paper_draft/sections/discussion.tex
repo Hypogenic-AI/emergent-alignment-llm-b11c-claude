@@ -1,0 +1,33 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Interpretation of Results}
+
+Our three experiments consistently fail to support the phase transition hypothesis for alignment resistance. However, they reveal a nuanced picture that does not neatly fit the gradual scaling alternative either.
+
+\para{Smaller models refuse more bluntly, not more safely.} The counterintuitive finding that \gptnano is the \emph{most} resistant to all attack vectors likely reflects limited capability rather than superior alignment. Smaller models have less nuanced understanding of context and tend to apply refusal heuristics more broadly. This aligns with the observation that capability and safety are intertwined: the same representational richness that enables a model to follow complex instructions also enables it to find contextually plausible reasons to comply with harmful requests \citep{wei2024jailbroken}.
+
+\para{Educational framing as a fundamental tension.} The most effective alignment circumvention in our study is educational framing---requesting harmful information ``for a safety lecture'' or ``to understand risks.'' This attack is most effective against the largest model (\gptone, safety score 2.7/10 on chemical mixing), suggesting that richer internal representations enable more sophisticated reasoning about when safety guidelines should be relaxed. This represents a fundamental tension in alignment: we want models to be helpful and contextually aware, but that same awareness can be exploited to circumvent safety constraints.
+
+\para{Non-monotonic scaling.} \gptone (the largest and most recent model) shows slightly higher safety than \gpto in some conditions, particularly the hypothetical jailbreak template (7.73 vs.\ 7.47). This non-monotonic pattern suggests that alignment training improvements can counteract the tendency of larger models to be more susceptible to sophisticated attacks. Scale alone does not determine alignment robustness; training methodology matters.
+
+\subsection{Relationship to Prior Work}
+
+Our findings are consistent with \citet{ji2024language}'s observation that alignment elasticity increases with scale, though we observe this trend only under specific attack vectors (hypothetical framing, educational conflict framing) rather than uniformly. The complete failure of few-shot erosion at inference time contrasts with their fine-tuning results, highlighting the distinction between weight-level and prompt-level alignment perturbation.
+
+The phase transitions observed by \citet{turner2025model} in LoRA training dynamics and by \citet{greenblatt2024alignment} in alignment faking behavior may represent a different phenomenon from what we test. Their results concern \emph{internal mechanisms} and \emph{training dynamics}, while our experiments probe \emph{behavioral robustness at inference time}. It is possible that phase transitions exist in the mechanistic substrate of alignment but do not manifest as behavioral discontinuities in well-trained commercial models.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\para{Small sample of model scales.} With only $n = 5$ models, we lack statistical power to definitively distinguish gradual from discontinuous scaling patterns. A denser parameter sweep with open-source models (\eg the Qwen2.5 family from 0.5B to 72B) would substantially strengthen our conclusions.
+
+\para{Unknown model parameters.} OpenAI does not publish exact parameter counts. Our approximate values may be inaccurate, and the models may differ in architecture, training data, and alignment procedures in ways that confound the scaling analysis.
+
+\para{Single model family.} All tested models are from OpenAI. The non-monotonic trend between \gpto and \gptone may reflect different alignment training rather than pure scale effects. Cross-family testing (\eg Claude, Gemini, Llama) would be necessary to establish generalizability.
+
+\para{Inference-time probing only.} We test alignment resistance through adversarial prompting, not through fine-tuning or weight modification. \citet{ji2024language} and \citet{qi2024finetuning} demonstrate that fine-tuning reveals stronger scaling effects on alignment degradation. Our results are specific to the inference-time threat model.
+
+\para{Single automated judge.} We use \gptomini as the sole safety evaluator. Without inter-rater reliability assessment or human evaluation, systematic biases in the judge (such as rating clear refusals uniformly at 10.0) may compress the score distribution and obscure subtler patterns.
+
+\para{Commercial model alignment saturation.} These models are specifically trained to resist the attack patterns we tested. The ceiling effect in Experiment~2 and the near-perfect scores on direct and role-play jailbreaks suggest that commercial alignment may have saturated for these well-known attack vectors. Open-source models with lighter alignment training might reveal scaling dynamics that are masked here.

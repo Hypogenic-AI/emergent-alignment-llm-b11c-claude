@@ -1,0 +1,8 @@
+PDF: papers/2304.15004_emergent_abilities_mirage.pdf
+Total pages: 14
+Pages per chunk: 5
+
+Chunks:
+  2304.15004_emergent_abilities_mirage_chunk_001.pdf: pages 1-5
+  2304.15004_emergent_abilities_mirage_chunk_002.pdf: pages 6-10
+  2304.15004_emergent_abilities_mirage_chunk_003.pdf: pages 11-14

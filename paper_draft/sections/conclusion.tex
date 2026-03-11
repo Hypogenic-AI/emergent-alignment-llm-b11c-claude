@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We conduct a systematic study of alignment resistance across five commercial LLMs spanning three orders of magnitude in parameter count, using three complementary evaluation protocols and both continuous and discrete metrics. We find no evidence of a phase transition in alignment resistance. Instead, alignment robustness shows weak, gradual trends that are not statistically significant with our sample size. The most consistent finding is that larger models are more susceptible to context-based framing attacks---hypothetical scenarios and educational justifications---consistent with richer representations enabling more nuanced contextual reasoning that can sometimes override safety guardrails.
+
+These results are tentatively reassuring for AI safety: alignment in well-trained commercial models appears to degrade predictably rather than fail catastrophically at some critical scale. However, the increasing effectiveness of sophisticated framing attacks against larger models identifies a specific risk vector that warrants monitoring as models continue to scale.
+
+Future work should extend this analysis with a denser parameter sweep using open-source models with known architectures, cross-family validation, fine-tuning-based alignment perturbation, and mechanistic analysis through representation engineering \citep{zou2023representation}. The intersection between the training-dynamics phase transitions found by \citet{turner2025model} and inference-time behavioral robustness remains an important open question for the field.

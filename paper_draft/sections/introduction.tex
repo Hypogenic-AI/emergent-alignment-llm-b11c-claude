@@ -1,0 +1,20 @@
+\section{Introduction}
+\label{sec:intro}
+
+As large language models grow in capability, a pressing question for AI safety is whether their alignment---the degree to which they follow intended behavioral constraints---degrades smoothly or breaks suddenly at some critical scale. The distinction matters: gradual degradation allows for predictable monitoring and incremental mitigation, while a phase transition implies that alignment techniques effective at one scale may fail catastrophically at the next \citep{wei2022emergent}.
+
+Recent work provides suggestive but conflicting evidence. \citet{ji2024language} show that alignment \emph{elasticity}---the tendency of models to revert to pre-training behavior---increases with model size, but test only three scales (0.5B, 4B, 7B), too sparse to distinguish a smooth trend from a sharp transition. \citet{greenblatt2024alignment} demonstrate alignment faking in Claude 3 Opus and Sonnet but not in smaller variants, suggestive of a threshold effect but with only two to three data points. Meanwhile, \citet{schaeffer2023emergent} argue that many apparent emergent abilities in LLMs are measurement artifacts arising from discrete evaluation metrics, raising the question of whether reported alignment phase transitions might similarly be mirages.
+
+{\bf What is missing?} No prior study has performed a systematic evaluation of alignment resistance across a range of model scales using both continuous and discrete metrics to disentangle real scaling phenomena from measurement artifacts. Existing work either tests too few model sizes, uses a single attack vector, or relies exclusively on binary metrics that can manufacture apparent discontinuities.
+
+We address this gap with a multi-pronged behavioral study of alignment resistance across five commercial LLMs spanning approximately three orders of magnitude in parameter count (${\sim}$1B to ${\sim}$400B). We probe alignment through three complementary attack vectors: jailbreak templates of varying sophistication, few-shot alignment erosion via misaligned in-context examples, and instruction conflict resolution between safety directives and adversarial user requests. Following \citet{schaeffer2023emergent}, we evaluate each condition with both continuous (0--10 safety score) and discrete (binary refusal) metrics.
+
+Our key findings are:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We find \textbf{no evidence of a phase transition} in alignment resistance: safety scores decrease gradually under hypothetical-framing attacks (from 9.47 to 7.47) with a non-significant correlation ($r = -0.765$, $p = 0.132$).
+    \item We demonstrate that \textbf{few-shot alignment erosion is completely ineffective} against all tested commercial models at all scales, with perfect safety scores (10/10) across all conditions.
+    \item We identify that \textbf{larger models are more susceptible to educational framing} in instruction conflict scenarios, with the largest model (\gptone) scoring 2.7/10 on safety for a chemical hazard query framed as educational.
+    \item We show that \textbf{continuous and discrete metrics track consistently}, indicating the observed trends are not measurement artifacts in the sense of \citet{schaeffer2023emergent}.
+\end{itemize}
+
+The remainder of this paper is organized as follows. \Secref{sec:related} reviews related work on emergent abilities and alignment robustness. \Secref{sec:method} describes our experimental methodology. \Secref{sec:results} presents results across all three experiments. \Secref{sec:discussion} discusses implications and limitations, and \secref{sec:conclusion} concludes.

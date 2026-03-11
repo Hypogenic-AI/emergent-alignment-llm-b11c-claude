@@ -1,0 +1,9 @@
+{
+  "total_time_seconds": 1161.094937324524,
+  "n_models": 5,
+  "experiments_completed": [
+    "jailbreak",
+    "erosion",
+    "conflict"
+  ]
+}

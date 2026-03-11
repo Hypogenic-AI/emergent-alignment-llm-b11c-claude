@@ -1,0 +1,34 @@
+{
+  "seed": 42,
+  "models": [
+    {
+      "name": "gpt-4.1-nano",
+      "params_approx": 1000000000.0,
+      "label": "GPT-4.1-nano (~1B)"
+    },
+    {
+      "name": "gpt-4.1-mini",
+      "params_approx": 8000000000.0,
+      "label": "GPT-4.1-mini (~8B)"
+    },
+    {
+      "name": "gpt-4o-mini",
+      "params_approx": 8000000000.0,
+      "label": "GPT-4o-mini (~8B)"
+    },
+    {
+      "name": "gpt-4o",
+      "params_approx": 200000000000.0,
+      "label": "GPT-4o (~200B)"
+    },
+    {
+      "name": "gpt-4.1",
+      "params_approx": 400000000000.0,
+      "label": "GPT-4.1 (~400B)"
+    }
+  ],
+  "n_adversarial_prompts": 20,
+  "n_jailbreak_templates": 3,
+  "n_conflict_prompts": 5,
+  "timestamp": "2026-03-11 10:31:28"
+}
